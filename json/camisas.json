@@ -1,0 +1,104 @@
+    [
+            {
+                "name": "Camisa Flamengo 23/24",
+                "image_url": "https://d2j6dbq0eux0bg.cloudfront.net/images/15913120/3469022873.jpg",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Palmeiras 23/24",
+                "image_url": "https://zorrojerseys.com/wp-content/uploads/2023/02/Palmeiras-23-24-home-jersey-1.jpg",
+                "price": "R$ 329,00"
+            },
+            {
+                "name": "Camisa São Paulo 23/24",
+                "image_url": "https://down-br.img.susercontent.com/file/sg-11134201-7rblk-loohvwommjt306",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Corinthians 23/24",
+                "image_url": "https://images.tcdn.com.br/img/img_prod/1050340/camisa_i_corinthians_23_24_versao_fan_151_1_6548536f6554dfdabedc7fcda2faa600.jpg",
+                "price": "R$ 332,49"
+            },
+            {
+                "name": "Camisa EC Vitória 23/24",
+                "image_url": "https://acdn.mitiendanube.com/stores/001/402/723/products/ab70e0ea1-13178d716451ffbad516880910311954-640-0.jpg",
+                "price": "R$ 279,99"
+            },
+            {
+                "name": "Camisa Internacional 23/24",
+                "image_url": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/944/601/products/d62754331-a0d5371dbeb941298f16819467924408-640-0.webp",
+                "price": "R$ 296,99"
+            },
+            {
+                "name": "Camisa Grêmio 23/24",
+                "image_url": "https://images.tcdn.com.br/img/img_prod/1050340/camisa_home_gremio_23_24_versao_feminina_3347_1_ae5ad988fbf6d867889f319d6473ac86.jpg",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Atlético-MG 23/24",
+                "image_url": "https://acdn.mitiendanube.com/stores/001/402/723/products/434aa3621-7182a6a0a3b9f69f8016826140420094-640-0.jpg",
+                "price": "R$ 299,99"
+            },
+            {
+                "name": "Camisa Botafogo 23/24",
+                "image_url": "https://down-br.img.susercontent.com/file/cn-11134207-7qukw-lfh6wnq2rm172a",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Cruzeiro",
+                "image_url": "https://down-br.img.susercontent.com/file/sg-11134201-23020-gpt0n0se8pnve8",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Vasco da Gama",
+                "image_url": "https://images.yampi.me/assets/stores/royale-infinity/uploads/images/camisa-vasco-2324-fora-versao-feminina-sem-nome-e-numero-p-659dd0e872499-large.jpg",
+                "price": "R$ 299,99"
+            },
+            {
+                "name": "Camisa Fortaleza 23/24",
+                "image_url": "https://images.tcdn.com.br/img/img_prod/1050340/camisa_i_fortaleza_23_24_versao_fan_2517_1_21cd6c9cac1ea8e86f0fd2b9ae46625c.jpg",
+                "price": "R$ 299,99"
+            },
+            {
+                "name": "Camisa Juventude 23/24",
+                "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBh9jjGkqyuDCTBwYat-b4HQ0hiH-YC-5PkbOkKO3IsLU00Q7LpooY_6xVKLec_PvsRn9ZqusIF9eA7eB7XWipN5ONW93aaxRs_SH-hvN2wwlK8N7FRR2XHjlervA08hxCDc8GJztRDIR_Arq_bMkVSYilBxXNNtnrWDggBw0vENZA5HfsFQ4017b2VA90/w640-h592/368804830_18256924039162154_1429144330561559170_n.jpg",
+                "price": "R$ 279,99"
+            },
+            {
+                "name": "Camisa Bahia 23/24",
+                "image_url": "https://acdn.mitiendanube.com/stores/001/402/723/products/6cb3c7581-09fe6aa8c6deb9ea2516911109033845-640-0.jpg",
+                "price": "R$ 259,00"
+            },
+            {
+                "name": "Camisa Athletico-PR 23/24",
+                "image_url": "https://acdn.mitiendanube.com/stores/002/571/810/products/dadc8d0fdec8b5cd114289eace5c892e1-06f5da8232a96d880416860660241642-640-0.jpg",
+                "price": "R$ 299,00"
+            },
+            {
+                "name": "Camisa Criciúma 23/24",
+                "image_url": "https://acdn.mitiendanube.com/stores/001/402/723/products/3614e2001-d9f129aa2b4c66c43716907491215383-640-0.jpg",
+                "price": "R$ 249,00"
+            },
+            {
+                "name": "Camisa Cuiabá 23/24",
+                "image_url": "https://i.pinimg.com/736x/64/5f/c1/645fc127e21882076fea4940eaa1bb86.jpg",
+                "price": "R$ 224,90"
+            },
+            {
+                "name": "Camisa Bragantino 23/24",
+                "image_url": "https://hudsports.com.br/wp-content/uploads/2023/08/1da01a87-9.jpg",
+                "price": "R$ 279,00"
+            },
+            {
+                "name": "Camisa Fluminense 23/24",
+                "image_url": "https://zorrojerseys.com/wp-content/uploads/2023/05/Fluminense-23-24-home-jersey-2.jpg",
+                "price": "R$ 349,99"
+            },
+            {
+                "name": "Camisa Atlético-GO 23/24",
+                "image_url": "https://imgcentauro-a.akamaihd.net/1300x1300/M114UE60.jpg",
+                "price": "R$ 209,00"
+            }
+        ]
+
+    
