@@ -1,94 +1,149 @@
+/* Reset de estilo */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+
+/* Estilo geral do corpo e da página */
+body {
   background-color: #070707 !important; 
 }
 
-body, html{
+body, html {
   overflow-x: hidden;
   width: 100%;
   height: 100%;
   margin: 0;
   background-color: rgb(218, 218, 218);
   padding: 0;
-  font-family: 'Lato', sans-serif;
-}
-header{
-  width: 100%;
-}
-p{
-  font-size: 1em;
-}
-#container{
-  background-color: rgb(236, 236, 236);
-  padding: 0px 0px;
-  margin: 0px 0px;
 }
 
-#nav-principal{
+/* Estilo do cabeçalho */
+header {
+  width: 100%;
+}
+
+/* Estilo dos parágrafos */
+p {
+  font-size: 1.2em;
+}
+
+/* Estilo da seção principal */
+#home {
+  background-color: rgb(236, 236, 236);
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo da seção de camisas */
+#camisas {
+  margin-top: 100px;
+}
+
+/* Estilo da navegação principal */
+#nav-principal {
   padding: 0;
   margin: 0;
   background-color: rgba(15, 15, 15, 0.603);
 }
-#logo{
-  margin: 0px 5px;
+
+/* Estilo do logo */
+#logo {
+  margin: 0 5px;
   padding: 0;
   height: 100px;
   width: 80px;
 }
-#pesquisar{
+
+/* Estilo do campo de pesquisa */
+#pesquisar {
   padding: 0;
   margin: 0;
 }
-#lista-nav li:hover{
+
+/* Estilo dos itens de navegação ao passar o mouse */
+#lista-nav li:hover {
   background-color: rgba(167, 150, 150, 0.192);
   border-radius: 10px;
 }
+
+/* Estilo do campo de pesquisa ao focar */
 input[type="search"]:focus {
   outline: none; 
   box-shadow: none; 
   border-color: #DC3545; 
 }
-#carousel{
-  background:#DC3545 url(/assets/imagens/undefined_image_M.png) no-repeat center;
+
+/* Estilo do carrossel */
+#carousel {
+  background: #DC3545 url(/assets/imagens/undefined_image_M.png) no-repeat center;
   height: 510px;
   width: 100%;
   margin-top: 100px;
 }
-#flex{
-    display: flex;
+#carousel div {
+  width: 300px;
+}
 
+/* Estilo dos cartões */
+.card {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card img{
-   min-height: 259px;
-   max-height: 466px;
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-footer{
+
+.card img {
+  min-height: 259px;
+  max-height: 466px;
+}
+
+/* Estilo da seção de produto */
+#product {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-price {
+  color: #DC3545;
+}
+
+.product-discount {
+  text-decoration: line-through;
+}
+
+.product-rating {
+  color: #bba009;
+}
+
+/* Estilo do rodapé */
+footer {
   background-color: #121D30;
 }
 
-
-
-
+/* Estilo da barra de rolagem */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 
 ::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
-
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
