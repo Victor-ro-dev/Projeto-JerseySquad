@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderProducts(products) {
         if (productsContainer) {
             productsContainer.innerHTML = '';
-            if (products.length === 0) { productsContainer.innerHTML = '<p class="text-center">Não temos esse modelo de camisa!<i class="fa-regular fa-face-frown"></i></p>';
+            if (products.length === 0) {
+                productsContainer.innerHTML = '<p class="text-center">Não temos esse modelo de camisa!<i class="fa-regular fa-face-frown"></i></p>';
             }
             products.forEach(product => {
                 const productCard = `
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Função Pesquisar
+    
     function filterProducts(term) {
         return data.filter(product => product.name.toLowerCase().includes(term.toLowerCase()));
     }
@@ -48,6 +49,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     renderProducts(data);
+
+    
+    const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+    const user = document.getElementById('user');
+
+    if (registerForm) {
+        registerForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            alert('Usuário registrado com sucesso!');
+            window.location.href = 'login.html';
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+            if (username === storedUsername && password === storedPassword) {
+                alert('Login bem-sucedido!');
+                window.location.href = '/index.html';
+            } else {
+                alert('Nome de usuário ou senha incorretos.');
+            }
+
+        });
+    }
 
     // Função Produtos Individual
     const productsPage = document.getElementById('product');
@@ -72,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <p class="product-price">${product.price}</p>
                     <p class="product-description mb-5">${product.description}</p>
                     <div class="mt-3 d-flex justify-content-between text-center">
-                        <div class="d-flex flex-column input-group w-50 mb-3">
+                        <div class="d-flex flex-column input-group w-25 mb-3">
                             <div><label for="sizes" class="form-label">Quantidade:</label></div>
                             <div>
                                 <select class="form-select" id="Quantity">
@@ -110,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Adiciona item ao carrinho
             document.getElementById('addToCartButton').addEventListener('click', () => {
                 const selectedSize = document.querySelector('.btn.active')?.innerText
-                const quantity = document.getElementById('Quantity').value 
+                const quantity = document.getElementById('Quantity').value
 
                 if (!selectedSize) {
                     alert('Selecione um tamanho!');
@@ -139,15 +174,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     //Gerar página do carrinho
-    const cartPage = document.getElementById('itens'); 
-    const cartFinish = document.getElementById('finish'); 
-    
+    const cartPage = document.getElementById('itens');
+    const cartFinish = document.getElementById('finish');
+
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         cartPage.innerHTML = `<p class="text-center mt-4">Seu carrinho está vazio.</p>`;
     } else {
-    cart.forEach(item => { 
-        const cartItem = ` 
+        cart.forEach(item => {
+            const cartItem = ` 
         <div class="row cart-item mb-3">
         <div class="col-md-2"> 
         <img src="${item.imageUrl}" alt="${item.name}" class="img-fluid"> 
@@ -155,24 +190,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="col-md-3"> <h5>${item.name}</h5> <p>Tamanho: ${item.size}</p> </div> 
         <div class="col-md-2"> <input type="number" class="form-control" value="${item.quantity}" min="1" max="5"> </div> 
         <div class="col-md-2"> <p class="product-price">${item.price}</p> </div> 
-        <div class="col-md-2"> <button class="btn btn-link btn-remove">Remover</button> </div> </div>`; 
+        <div class="col-md-2"> <button class="btn btn-link btn-remove">Remover</button> </div> </div>`;
 
 
-        cartPage.insertAdjacentHTML('beforeend', cartItem); });
+            cartPage.insertAdjacentHTML('beforeend', cartItem);
+        });
     }
 
-        const cartActions = ` <div class="d-flex justify-content-around mt-4"> <div> <a href="/index.html" class="btn btn-secondary">Continuar Comprando</a> </div> <div> <button class="btn btn-danger" id="finalizePurchase">Finalizar Compra</button> </div> </div>`; 
-         
-        cartFinish.insertAdjacentHTML('beforeend', cartActions);
-        
-        document.querySelectorAll('.btn-remove').forEach(button => { button.addEventListener('click', function () { const itemName = this.closest('.cart-item').querySelector('h5').innerText; 
+    const cartActions = ` <div class="d-flex justify-content-around mt-4"> <div> <a href="/index.html" class="btn btn-secondary">Continuar Comprando</a> </div> <div> <button class="btn btn-danger" id="finalizePurchase">Finalizar Compra</button> </div> </div>`;
 
-            const updatedCart = cart.filter(item => item.name !== itemName); 
+    cartFinish.insertAdjacentHTML('beforeend', cartActions);
 
-            localStorage.setItem('cart', JSON.stringify(updatedCart)); 
+    document.querySelectorAll('.btn-remove').forEach(button => {
+        button.addEventListener('click', function () {
+            const itemName = this.closest('.cart-item').querySelector('h5').innerText;
 
-            this.closest('.cart-item').remove(); 
-        }); 
+            const updatedCart = cart.filter(item => item.name !== itemName);
+
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+            this.closest('.cart-item').remove();
+        });
     });
 
 });
+
+
+    
