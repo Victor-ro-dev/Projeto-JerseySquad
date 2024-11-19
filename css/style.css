@@ -40,7 +40,9 @@ p {
 /* Estilo da seção de camisas */
 #camisas,
 #carrinho,
-#login,#register {
+#login,
+#register,
+#checkout {
   margin-top: 100px;
   min-height: 520px;
 }
@@ -75,6 +77,11 @@ p {
 
 /* Estilo do campo de pesquisa ao focar */
 input[type="search"]:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #DC3545;
+}
+input[type="text"]:focus {
   outline: none;
   box-shadow: none;
   border-color: #DC3545;
@@ -143,7 +150,8 @@ input[type="search"]:focus {
 }
 
 /* Estilo da seção de login */
-#section-login, #section-register {
+#section-login,
+#section-register {
   margin-top: 100px;
   background-color: white;
   padding: 30px;
@@ -165,6 +173,11 @@ input[type="search"]:focus {
   background-color: #c82333;
   border-color: #bd2130;
 }
+
+.checkout-container {
+  margin-top: 50px;
+}
+
 
 /* Estilo do rodapé */
 footer {

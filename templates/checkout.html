@@ -41,7 +41,7 @@
                             <div class="col-12 col-md-4 d-flex justify-content-lg-end justify-content-center">
                                 <ul class="navbar-nav text-center" id="lista-nav">
                                     <li class="nav-item me-lg-4 ps-2 pe-2">
-                                        <a href="login.html" class="nav-link text-white">Entrar</a>
+                                        <a href="#" class="nav-link text-white">Entrar</a>
                                     </li>
                                     <li class="nav-item ps-2 pe-2">
                                         <a href="carrinho.html" class="nav-link text-white">Carrinho</a>
@@ -53,20 +53,43 @@
                 </div>
             </nav>
         </header>
-        <main id="register" class="d-flex justify-content-center">
-            <section id="section-register" class="w-50 m-auto">
-                <h2 class="text-center mb-4">Registrar</h2>
-                <form id="registerForm">
-                    <div class="mb-3"> <label for="registerUsername" class="form-label">Nome de Usuário</label> <input
-                            type="text" class="form-control" id="registerUsername"
-                            placeholder="Digite seu nome de usuário" required> </div>
-                    <div class="mb-3"> <label for="registerPassword" class="form-label">Senha</label> <input
-                            type="password" class="form-control" id="registerPassword" placeholder="Digite sua senha"
-                            required> </div>
-                    <div class="d-grid"> <button type="submit" class="btn btn-primary w-50 m-auto">Registrar</button>
+        <main id="checkout" class="d-flex justify-content-center">
+            <section class="checkout-container w-50 mb-5 my-5 p-4 bg-white rounded shadow-sm">
+                <h2 class="mb-4 text-center">Checkout</h2>
+                <form>
+                    <h4 class="mb-3">Informações de Pagamento</h4>
+                    <div class="mb-3"> <label for="cardName" class="form-label">Nome no Cartão</label> <input
+                            type="text" class="form-control" id="cardName" placeholder="Nome completo" required> </div>
+                    <div class="mb-3"> <label for="cardNumber" class="form-label">Número do Cartão</label> <input
+                            type="text" class="form-control" id="cardNumber" placeholder="Número do cartão" required>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6"> <label for="expirationDate" class="form-label">Data de Validade</label>
+                            <input type="text" class="form-control" id="expirationDate" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-md-6"> <label for="cvv" class="form-label">CVV</label> <input type="text"
+                                class="form-control" id="cvv" placeholder="Código de segurança" required> </div>
+                    </div>
+                    <h4 class="mb-3">Endereço de Entrega</h4>
+                    <div class="mb-3"> <label for="zip" class="form-label">CEP</label> <input type="text"
+                        class="form-control" id="zip" placeholder="CEP" required> </div>
+                    <div class="mb-3"> <label for="address" class="form-label">Endereço</label> <input type="text"
+                            class="form-control" id="address" placeholder="Rua, número" required> </div>
+                    <div class="mb-3"> <label for="city" class="form-label">Cidade</label> <input type="text"
+                            class="form-control" id="city" placeholder="Cidade" required> </div>
+                    <div class="mb-3"> <label for="state" class="form-label">Estado</label> <input type="text"
+                            class="form-control" id="state" placeholder="Estado" required> </div>
+                    <h4 class="mb-3">Resumo do Pedido</h4>
+                    <div id="pedido" class="border rounded p-3 mb-3">
+                        <h4>Resumo do Pedido</h4>
+                        <p id="frete">Frete: </p>
+                        <p id="total">Total: </p>
+                    </div>
+                    
+                    <div class="d-grid"> <button id="finalizePurchase" class="btn btn-danger btn-lg">Finalizar Compra</button>
                     </div>
                 </form>
-
+            </section>
         </main>
     </div>
     <footer class="text-white text-center">Todos os direitos reservados - &copy;</footer>

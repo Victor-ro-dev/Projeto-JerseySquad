@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    
+
     function filterProducts(term) {
         return data.filter(product => product.name.toLowerCase().includes(term.toLowerCase()));
     }
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderProducts(data);
 
-    
+
     const registerForm = document.getElementById('registerForm');
     const loginForm = document.getElementById('loginForm');
     const user = document.getElementById('user');
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <img src="${item.imageUrl}" alt="${item.name}" class="img-fluid"> 
         </div> 
         <div class="col-md-3"> <h5>${item.name}</h5> <p>Tamanho: ${item.size}</p> </div> 
-        <div class="col-md-2"> <input type="number" class="form-control" value="${item.quantity}" min="1" max="5"> </div> 
+        <div class="col-md-2"> <p>Quantidade: ${item.quantity}</p> </div> 
         <div class="col-md-2"> <p class="product-price">${item.price}</p> </div> 
         <div class="col-md-2"> <button class="btn btn-link btn-remove">Remover</button> </div> </div>`;
 
@@ -197,7 +197,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    const cartActions = ` <div class="d-flex justify-content-around mt-4"> <div> <a href="/index.html" class="btn btn-secondary">Continuar Comprando</a> </div> <div> <button class="btn btn-danger" id="finalizePurchase">Finalizar Compra</button> </div> </div>`;
+    const cartActions = ` <div class="d-flex justify-content-around mt-4"> <div> <a href="/index.html" class="btn btn-secondary">Continuar Comprando</a> </div> <div> 
+    <a href="checkout.html"><button class="btn btn-danger">Finalizar Compra</button></a> </div> </div>`;
 
     cartFinish.insertAdjacentHTML('beforeend', cartActions);
 
@@ -213,7 +214,175 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const pedidoContainer = document.getElementById('pedido');
 
-    
+    // Função Pedido
+    function renderPedido() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if (cart.length === 0) {
+            pedidoContainer.innerHTML = `<p class="text-center">Não há itens no pedido.</p>`;
+            return;
+        }
+
+        cart.forEach(item => {
+            const pedidoItem = `
+                <div class="row align-items-center mb-3">
+                    <div class="col-lg-2">
+                        <img src="${item.imageUrl}" alt="${item.name}" class="img-fluid">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6>${item.name}</h6>
+                        <p>Tamanho: ${item.size}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>Quantidade: ${item.quantity}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>Preço: ${item.price}</p>
+                    </div>
+                </div>
+            `;
+
+            pedidoContainer.insertAdjacentHTML('beforeend', pedidoItem);
+        });
+
+        const total = cart.reduce((sum, item) => {
+            const itemPrice = parseFloat(item.price.replace('R$', '').replace(',', '.'));
+            return sum + itemPrice * item.quantity;
+        }, 0);
+
+        const resumo = `
+            <div class="row mt-4">
+                <div class="col-md-12 text-end">
+                    <h5>Total do Pedido: R$ ${total.toFixed(2)}</h5>
+                </div>
+            </div>
+        `;
+
+        pedidoContainer.insertAdjacentHTML('beforeend', resumo);
+    }
+
+    renderPedido();
+
+
+    const zipInput = document.getElementById("zip");
+    const addressInput = document.getElementById("address");
+    const cityInput = document.getElementById("city");
+    const stateInput = document.getElementById("state");
+    const freteElement = document.getElementById("frete");
+    const totalElement = document.getElementById("total");
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const baseTotal = cart.reduce((sum, item) => sum + (parseFloat(item.price.replace('R$', '').replace(',', '.')) * item.quantity), 0);
+
+    async function fetchAddress(cep) {
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            if (!response.ok) throw new Error("Erro ao buscar o CEP");
+            const data = await response.json();
+            if (data.erro) throw new Error("CEP não encontrado");
+            return data;
+        } catch (error) {
+            alert("Erro ao buscar CEP: " + error.message);
+            return null;
+        }
+    }
+
+    function calculateFrete(state) {
+        const fretePorEstado = {
+            SP: 10.0,
+            RJ: 15.0,
+            MG: 12.0,
+            ES: 14.0,
+            outros: 20.0
+        };
+        return fretePorEstado[state] || fretePorEstado['outros'];
+    }
+
+    zipInput.addEventListener("blur", async () => {
+        const cep = zipInput.value.replace(/\D/g, "");
+        if (cep.length !== 8) {
+            alert("CEP inválido. Insira um CEP com 8 dígitos.");
+            return;
+        }
+
+        const addressData = await fetchAddress(cep);
+        if (addressData) {
+            addressInput.value = `${addressData.logradouro}, ${addressData.bairro}`;
+            cityInput.value = addressData.localidade;
+            stateInput.value = addressData.uf;
+
+            const frete = calculateFrete(addressData.uf);
+            freteElement.textContent = `Frete: R$ ${frete.toFixed(2)}`;
+            totalElement.textContent = `Total: R$ ${(baseTotal + frete).toFixed(2)}`;
+        }
+    });
+
+    freteElement.textContent = "Frete: ";
+    totalElement.textContent = `Total: R$ ${baseTotal.toFixed(2)}`;
+});
+
+const finalizeButton = document.getElementById("finalizePurchase");
+
+if (finalizeButton) {
+    finalizeButton.addEventListener("click", () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            alert("Seu carrinho está vazio. Adicione itens antes de finalizar a compra.");
+            return;
+        }
+
+        const cardName = document.getElementById("cardName").value.trim();
+        const cardNumber = document.getElementById("cardNumber").value.trim();
+        const expirationDate = document.getElementById("expirationDate").value.trim();
+        const cvv = document.getElementById("cvv").value.trim();
+        const zip = document.getElementById("zip").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const state = document.getElementById("state").value.trim();
+
+        if (!cardName) {
+            alert("O campo 'Nome no Cartão' é obrigatório.");
+            return;
+        }
+        if (!/^\d{13,16}$/.test(cardNumber)) {
+            alert("Número do cartão inválido. Insira entre 13 e 16 dígitos.");
+            return;
+        }
+        if (!/^\d{2}\/\d{2}$/.test(expirationDate)) {
+            alert("Data de validade inválida. Use o formato MM/AA.");
+            return;
+        }
+        if (!/^\d{3,4}$/.test(cvv)) {
+            alert("CVV inválido. Insira um código de 3 ou 4 dígitos.");
+            return;
+        }
+        if (!/^\d{5}-?\d{3}$/.test(zip)) {
+            alert("CEP inválido. Insira um CEP no formato 00000-000.");
+            return;
+        }
+        if (!address) {
+            alert("O campo 'Endereço' é obrigatório.");
+            return;
+        }
+        if (!city) {
+            alert("O campo 'Cidade' é obrigatório.");
+            return;
+        }
+        if (!state) {
+            alert("O campo 'Estado' é obrigatório.");
+            return;
+        }
+
+        localStorage.removeItem('cart');
+        alert("Compra realizada com sucesso! Obrigado pela preferência.");
+
+        window.location.href = "/index.html";
+    });
+}
+
